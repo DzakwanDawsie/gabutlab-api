@@ -1,2 +1,2 @@
-# gabutlab-api
-Gabutlab API
+# gabutlab-cms-api
+Gabutlab CMS API
