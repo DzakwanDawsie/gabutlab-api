@@ -40,5 +40,25 @@ module.exports = new EntitySchema({
       type: 'timestamp',
       nullable: true,
     }
+  },
+  relations: {
+    comments: {
+      target: "PostComment",
+      type: "one-to-many",
+      inverseSide: 'post',
+      joinTable: true,
+    },
+    likes: {
+      target: "PostLike",
+      type: "one-to-many",
+      inverseSide: 'post',
+      joinTable: true,
+    },
+    topics: {
+      target: "PostTopic",
+      type: "one-to-many",
+      inverseSide: 'post',
+      joinTable: true,
+    }
   }
 })

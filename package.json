@@ -4,7 +4,8 @@
   "description": "Gabut",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "nodemon-start": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",

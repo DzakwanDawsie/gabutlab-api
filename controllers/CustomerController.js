@@ -28,6 +28,7 @@ exports.store = async (req, res) => {
 exports.update = async (req, res) => {
   const id = req.params.id;
   const body = req.body;
+  const file = req.file;
   
   const customer = await database.findOneById(Customer, id);
 
@@ -46,6 +47,8 @@ exports.update = async (req, res) => {
   if (body.password) {
     customer.password = bcrypt.hashSync(body.password, 10);
   }
+
+  if (file) customer.photo = file.filename;
   
   await database.save(Customer, customer);
 

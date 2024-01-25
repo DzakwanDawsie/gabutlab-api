@@ -1,10 +1,10 @@
 const EntitySchema = require('typeorm').EntitySchema;
-const PostComment = require('../models/PostComment').PostComment;
+const PostLike = require('../models/PostLike').PostLike;
 
 module.exports = new EntitySchema({
-  tableName: 'post_comments',
-  name: 'PostComment',
-  target: PostComment,
+  tableName: 'post_likes',
+  name: 'PostLike',
+  target: PostLike,
   columns: {
     id: {
       primary: true,
@@ -19,19 +19,6 @@ module.exports = new EntitySchema({
     customer_id: {
       type: 'bigint',
       nullable: false,
-    },
-    parent_id: {
-      type: 'bigint',
-      nullable: false,
-      default: 0
-    },
-    content: {
-      type: 'text',
-      nullable: true,
-    },
-    status: {
-      type: 'enum',
-      enum: ['active', 'inactive'],
     },
     created_at: {
       type: 'timestamp',

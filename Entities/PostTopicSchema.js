@@ -1,10 +1,10 @@
 const EntitySchema = require('typeorm').EntitySchema;
-const PostComment = require('../models/PostComment').PostComment;
+const PostTopic = require('../models/PostTopic').PostTopic;
 
 module.exports = new EntitySchema({
-  tableName: 'post_comments',
-  name: 'PostComment',
-  target: PostComment,
+  tableName: 'post_topics',
+  name: 'PostTopic',
+  target: PostTopic,
   columns: {
     id: {
       primary: true,
@@ -16,22 +16,9 @@ module.exports = new EntitySchema({
       type: 'bigint',
       nullable: false,
     },
-    customer_id: {
+    topic_id: {
       type: 'bigint',
       nullable: false,
-    },
-    parent_id: {
-      type: 'bigint',
-      nullable: false,
-      default: 0
-    },
-    content: {
-      type: 'text',
-      nullable: true,
-    },
-    status: {
-      type: 'enum',
-      enum: ['active', 'inactive'],
     },
     created_at: {
       type: 'timestamp',
@@ -43,6 +30,15 @@ module.exports = new EntitySchema({
     }
   },
   relations: {
+    detail: {
+      target: "Topic",
+      type: "many-to-one",
+      joinTable: true,
+      joinColumn: {
+        name: 'topic_id'
+      },
+      inverseSide: 'post_topics'
+    },
     post: {
       target: "Post",
       type: "many-to-one",
@@ -50,16 +46,7 @@ module.exports = new EntitySchema({
       joinColumn: {
         name: "post_id"
       },
-      inverseSide: 'comments',
-    },
-    customer: {
-      target: "Customer",
-      type: "many-to-one",
-      joinTable: true,
-      joinColumn: {
-        name: "customer_id"
-      },
-      inverseSide: 'comments',
+      inverseSide: 'topics',
     },
   }
 })
